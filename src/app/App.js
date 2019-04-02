@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux'
-import { BrowserRouter, Route, Switch } from "react-router-dom"
-import './App.css';
+import { HashRouter } from "react-router-dom"
+import  './reset.css';
 import store from '../store/store'
-import { view as header } from '../components/header/index'
+import Main from './routerMain'
 class App extends Component {
   render() {
     return (
       <Provider store = { store }>
-        <div className="container">
-          <BrowserRouter>
-            <div>
-              <Route path="/" component={ header }></Route>
-            </div>
-          </BrowserRouter>
+        <div >
+          <HashRouter>
+              <Main/>
+          </HashRouter>
         </div>
       </Provider>
       

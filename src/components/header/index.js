@@ -1,2 +1,3 @@
-import view from './component'
-export { view }
+import view from './container'
+import reducer from './store/reducer'
+export { view , reducer}

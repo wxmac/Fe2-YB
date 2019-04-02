@@ -1,0 +1,13 @@
+
+  {
+    "success":true,
+    "data":{
+      "state": "ing",
+      "total": "35",
+      "alread":"10",
+      "remain":"15",
+      "time": "100000"
+    }
+    
+  }
+  

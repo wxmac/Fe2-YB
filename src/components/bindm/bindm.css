@@ -1,0 +1,128 @@
+/*****dialog *******/
+.fixed{
+   position: fixed !important;
+
+}
+.hide{
+    display: none !important;
+}
+.dialog_container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+}
+.noScroll {
+    height: 100%;
+    overflow: hidden;
+}
+.dialog_shadow {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.5;
+}
+.dialog_body_container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/****** bind ********/
+.dialog_body {
+    height: 6.08rem;
+    width: 7.6rem;
+    border-radius: 12px;
+    background-color: white;
+    position: relative;
+}
+.dialog_title_c {
+    margin: 0.4rem 0 0 0.53rem;
+}
+.dialog_title_text {
+    font-size: 0.43rem;
+    color: #222;
+    font-weight: bold;
+}
+.close_btn {
+    position: absolute;
+    top: 0.27rem;
+    right: 0.24rem;
+    width: 0.69rem;
+    height: 0.69rem;
+}
+.phone_num_container {
+    display: flex;
+    flex-direction: row;
+    margin: 0.61rem 0.53rem 0 0.53rem;
+}
+.phone_num_container, .num {
+    margin-top: 0.48rem;
+}
+.text_input {
+    flex: 1;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid #cecece;
+    padding: 0 0.13rem;
+    height: 0.8rem;
+}
+.text_input, .phone{
+    width: 3.76rem;
+    margin-right: 0.27rem;
+}
+.submit_btn {
+    width: 2.16rem;
+    height: 0.8rem;
+    background-image: url("../../assets/img/bindm/submit_ok@2x.png");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: 100% 100%;
+}
+.num_get_text {
+    color: white;
+    font-size: 0.32rem;
+}
+.next_btn {
+    width: 6.53rem;
+    height: 1.23rem;
+    background-image: url("../../assets/img/bindm/next_ok@2x.png");
+    background-size: 100% 100%;
+    margin: 0.4rem 0.53rem 0 0.53rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0.47rem;
+}
+.next_btn_text {
+    font-size: 0.43rem;
+    color: white;
+}
+/******* msg *******/
+.msg_body_container {
+    height: 40%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+}
+.msg_content_text {
+    border-radius: 0.5rem;
+    background-color: black;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.347rem;
+    color: white;
+    line-height: 0.507rem;
+}

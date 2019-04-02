@@ -1,0 +1,52 @@
+.bargain_main{
+    width: 100%;
+}
+.red{
+    background: red;
+}
+.bargain_main .bargain_main_top{
+    padding: .27rem .23rem;
+    display: flex;
+    align-items: center;
+}
+.bargain_main .bargain_main_top .main_top_img{
+    width: .57rem;
+    height: .57rem;
+}
+.bargain_main .bargain_main_top .main_top_text{
+    color: #222;
+    font-size: .4rem;
+    flex: 1;
+    text-align: center;
+    font-weight: 600;
+    margin-right: .27rem;
+}
+.banner_img{
+    width: 100%;
+    height: 3.89rem;
+}
+.scrollContain{
+    height: 1.07rem;
+    background: #fff;
+    padding: 0 .27rem;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #eee;
+}
+.scrollContain ul{
+    height: 1.07rem;
+}
+.scrollContain ul li{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.anim {
+    transition: all .5s;
+    margin-top:  -.8rem;
+  }
+  .anim_normal {
+    transition: all .5s;
+    margin-top: 0;
+  }

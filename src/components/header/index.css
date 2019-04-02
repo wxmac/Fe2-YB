@@ -1,0 +1,14 @@
+.container{
+    width: 1200px;
+    height: auto;
+    background: skyblue;
+    margin: 0 auto;
+}
+.listbox{
+    display: flex;
+    justify-content: center;
+}
+.listbox .list_item{
+    padding: 5px 10px;
+    cursor: pointer;
+} 
