@@ -31,8 +31,11 @@
 
     redux-thunk链接: https://www.npmjs.com/package/redux-thunk 
 
-##关于active_time.json，为了预防活动多，找不到相关文件夹的情况，在这里记录page下文件夹开发的活动 + 开发时间    
+## 关于active_time.json  
 
-    具体参考active_time.json
+    为了预防活动多，找不到相关文件夹的情况，在这里记录page下文件夹开发的活动 + 开发时间  
+
+    具体参考active_time.json  
+    
    
    
