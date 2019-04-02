@@ -1,11 +1,11 @@
-##关于运行  
+## 关于运行  
 
     npm install -- 安装所有依赖；  
 
     npm run start -- 启动本地服务；  
 
     npm run build -- 打包  
-    
+
     
 ## 关于目录结构
    build -- 执行npm run build 之后生成的包，直接丢给后端。  
