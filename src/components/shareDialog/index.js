@@ -20,6 +20,9 @@ export default class ShareDialog extends Component{
             showMain:false
         }
     }
+    componentDidMount(){
+        
+    }
     handleCloseMain(e){
         e.stopPropagation()
         this.setState({
@@ -40,8 +43,8 @@ export default class ShareDialog extends Component{
     render(){
         return(
             <div onClick = { e => this.handleCloseGuid(e) } className={this.state.showMain ? styleCss.hide : '' }>
-                {/* showMask 为true 隐藏， showMask从父元素得到 */}
-                <div className={`${styleCss.success_main} ${ this.props.showMask ? styleCss.hide : '' } `} >
+                {/* showMask 为 false 隐藏， showMask从父元素得到 */}
+                <div   className={`${styleCss.success_main} ${ this.props.showMask ?  '' : styleCss.hide  } `} >
                     <div className={styleCss.success_main_mask}></div>
                     <div className={styleCss.success_main_cont}>
                         <div className={ `${styleCss.success_main_cont_bottom}` }>

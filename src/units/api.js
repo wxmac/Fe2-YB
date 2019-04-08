@@ -13,13 +13,13 @@ let fetch = {
  * */ 
  fetch.get = async ( url , success, fail = () => {} ) => {
     if( !url ||  !success || !fail){
-        throw  new Error('缺少必要参数')
+        throw  new Error('fetch.get 缺少必要参数')
     }
     return await axios.get(url)
         .then((res) => {
             success(res)
         }).catch((error) => {
-            console.log('Has Error====>', error)
+            console.log('Has Error GET====>', error)
         })
 }
 
@@ -33,18 +33,15 @@ let fetch = {
  * */ 
 fetch.post = async (  url , data = {}, success , fail = () => {} ) => {
     if(!url || !data || !success || !fail){
-        throw  new Error('缺少必要参数')
+        throw  new Error('fetch.post 缺少必要参数')
     }
-    let params
-    if( data ) { params = qs.stringify(data) } 
-    return await axios.post(url,{
-            data:params,
-        }).then((res) => {
+    return await axios.post(url,
+         qs.stringify(data),
+        ).then((res) => {
             success(res)
         }).catch((error) => {
             fail(error)
-            window.global.dialog(error, true)
-            console.log('Has Error====>', error)
+            console.log('Has Error POST====>', error)
         })
 }
 

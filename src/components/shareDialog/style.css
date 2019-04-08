@@ -12,10 +12,10 @@
     left: 0;
     right: 0;
     background: rgba(0,0,0,.8);
-    z-index: 1;
+    z-index: 100;
 }
 .success_main .success_main_cont{
-    width: 7.04rem;
+    width: 5rem;
     height: auto;
     background: #fff;
     position: absolute;
@@ -25,7 +25,7 @@
     border-radius: .24rem;
     display: flex;
     flex-direction: column;
-    z-index: 2;
+    z-index: 101;
 }
 .success_main .success_main_cont .success_main_cont_top{
     height: 3.41rem;
@@ -107,9 +107,10 @@
 .success_main_cont .success_main_cont_bottom p:nth-child(1){
     margin-top: .37rem;
     margin-bottom: .16rem;
+    font-size: .27rem;
 }
 .success_main_cont .success_main_cont_bottom p:nth-child(2){
-    font-size: .27rem;
+    font-size: .24rem;
     opacity: .5;
     margin-bottom: .48rem;
 }
@@ -120,20 +121,19 @@
     padding: 0 .4rem;
 }
  .success_main_cont_bottom .success_bottom_share .icont_share img{
-   width: 1.12rem;
-   height: 1.12rem;
+   width: .8rem;
+   height: .8rem;
 }
 /* 关闭按钮 */
 .close_box{
     position: absolute;
-    position: absolute;
-    bottom: -1.6rem;
+    bottom: -1.2rem;
     left: 50%;
     transform: translateX(-50%);
     cursor: pointer;
 }
 .close_box img{
-    width: 1rem;
+    width: .7rem;
 }
 /* 引导弹窗 */
 .hide{
@@ -149,15 +149,15 @@
     left: 0;
     right: 0;
     background: rgba(0,0,0,.8);
-    z-index: 3;
+    z-index: 102;
 }
 .success_guide  .success_guide_cont{
-    z-index: 4;
+    z-index: 103;
     position: absolute;
     right: 0;
     top: 0;
 }
 .success_guide  .success_guide_cont img{
-    width: 5rem;
+    width: 3.5rem;
     margin: .59rem .8rem 0 0;
 }

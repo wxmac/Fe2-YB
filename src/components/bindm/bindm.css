@@ -12,7 +12,7 @@
     left: 0;
     height: 100%;
     width: 100%;
-    z-index: 100;
+    z-index: 105;
 }
 .noScroll {
     height: 100%;
@@ -36,17 +36,17 @@
 }
 /****** bind ********/
 .dialog_body {
-    height: 6.08rem;
-    width: 7.6rem;
-    border-radius: 12px;
+    height: 5.08rem;
+    width: 5.6rem;
+    border-radius: .2rem;
     background-color: white;
     position: relative;
 }
 .dialog_title_c {
-    margin: 0.4rem 0 0 0.53rem;
+    margin: 0.3rem 0 1rem 0.43rem;
 }
 .dialog_title_text {
-    font-size: 0.43rem;
+    font-size: 0.37rem;
     color: #222;
     font-weight: bold;
 }
@@ -54,16 +54,17 @@
     position: absolute;
     top: 0.27rem;
     right: 0.24rem;
-    width: 0.69rem;
-    height: 0.69rem;
+    width: 0.59rem;
+    height: 0.59rem;
 }
 .phone_num_container {
     display: flex;
     flex-direction: row;
     margin: 0.61rem 0.53rem 0 0.53rem;
+    align-items: center;
 }
 .phone_num_container, .num {
-    margin-top: 0.48rem;
+    margin-top: 0;
 }
 .text_input {
     flex: 1;
@@ -73,37 +74,42 @@
     border-bottom: 1px solid #cecece;
     padding: 0 0.13rem;
     height: 0.8rem;
+    font-size: .24rem;
+    outline: none;
 }
 .text_input, .phone{
     width: 3.76rem;
     margin-right: 0.27rem;
 }
 .submit_btn {
-    width: 2.16rem;
-    height: 0.8rem;
+    /* width: 2.4rem; */
+    height: 0.5rem;
     background-image: url("../../assets/img/bindm/submit_ok@2x.png");
     display: flex;
     align-items: center;
     justify-content: center;
     background-size: 100% 100%;
+    font-size: .24rem;
+    white-space: nowrap;
+    padding: 0 .18rem;
 }
 .num_get_text {
     color: white;
-    font-size: 0.32rem;
+    font-size: .24rem;
 }
 .next_btn {
-    width: 6.53rem;
-    height: 1.23rem;
+    width: 4.53rem;
+    height: .85rem;
     background-image: url("../../assets/img/bindm/next_ok@2x.png");
     background-size: 100% 100%;
     margin: 0.4rem 0.53rem 0 0.53rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: 0.47rem;
+    padding-bottom: 0.4rem;
 }
 .next_btn_text {
-    font-size: 0.43rem;
+    font-size: 0.37rem;
     color: white;
 }
 /******* msg *******/

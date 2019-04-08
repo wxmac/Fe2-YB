@@ -9,15 +9,11 @@ window.global == null && (window.global = {});
  */
 
 const showMsg = function(str, autoHide, duration) {
-    let $mask = $('#j_alert_mask');
-    let $el = $('#j_alert_el');
-    if (!$mask.length) {
-        $mask = $('<div id="j_alert_mask" class="alert_mask"></div>');
-        $('body').append($mask);
-    }
+    let $mask = $('#j_alert_mask'); // eslint-disable-line
+    let $el = $('#j_alert_el');// eslint-disable-line
     if (!$el.length) {
-        $el = $('<div id="j_alert_el" class="alert_container"></div>');
-        $('body').append($el);
+        $el = $('<div id="j_alert_el" class="alert_container"></div>');// eslint-disable-line
+        $('body').append($el);// eslint-disable-line
     }
     $el.html(str);
     show();

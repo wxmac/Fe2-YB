@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styleCss from './bindm.css'
+import isWx from '../../units/iswx'
 import fetch from '../../units/api'
 /**
  * 登录、注册弹窗 -- 关联手机号
@@ -18,7 +19,8 @@ class Bindm extends Component {
             liked: true, // 文案默认为‘获取验证码‘
             InputValueTel:'', // 输入框的值
             InputValueCode:'', // 验证码框的值
-            flag: true // 限制重复点击
+            flag: true, // 限制重复点击
+            getUid:null
         }
     }
     
@@ -77,8 +79,25 @@ class Bindm extends Component {
           }, 1000);
     }
     getCodeUid(val){
-        fetch.get('/api/state.json', (res) => {
-            console.log('res', res.data.data)
+        // 微信和非微信环境调用的不是同一个接口
+        let url = isWx ? '/smscode.htm' : '/washstation/smscode.htm'
+        fetch.post(url, {
+            mobile:val
+        }, (res) => {
+            if(res.data && res.data.success && res.data.msg ){
+                window.global.showMsg('发送成功', true)
+                this.setState({
+                    getUid: res.data.msg
+                })
+            } else if(res.data && !res.data.success && res.data.msg) {
+                window.global.showMsg(res.data.msg, true)
+            }
+        },(err) => {
+            let msg = "发送短信失败，请重试";
+            if(err && err.data &&  err.data.msg){
+                msg = err.data.msg
+            }
+            window.global.showMsg(msg, true)
         })
     }
     // 关闭弹窗
@@ -109,23 +128,56 @@ class Bindm extends Component {
         const Inputval = this.state.InputValueTel
         console.log(this.state.flag)
         if(this.state.flag){
+            
+            setTimeout(() => {
+                this.setState({
+                    flag: true
+                })
+           },2000)
+
             if(CodeVal === '' || Inputval === '') {
                 window.global.showMsg('手机号或验证码不能为空', true)
-               
+                return
             }
             if( CodeVal !== '' && !reg.exec(CodeVal)){
                 window.global.showMsg('请输入四位数字验证码', true)
                 return
             }
-           setTimeout(() => {
-                this.setState({
-                    flag: true
-                })
-           },2000)
+            this.handlesubEvent()
         }
         
         
         
+    }
+    handlesubEvent(){
+        const CodeVal = this.state.InputValueCode
+        const Inputval = this.state.InputValueTel
+        let url = isWx ? '/smsverify.htm' : '/washstation/register.htm'
+        fetch.post(url, {
+            mobile:Inputval,
+            code:CodeVal,
+            uid: this.state.getUid
+        },(res) => {
+            console.log('--->', res)
+            if(res.data && res.data.success ){
+                window.global.showMsg('绑定成功', true)
+                window.location.href =  window.location.href + '?t='+((new Date()).getTime());
+                this.setState({
+                    showMask: false
+                })
+            } else {
+                if(res.data && res.data.msg){
+                    window.global.showMsg(res.data.msg, true)
+                }
+            }
+        }, (err) => {
+            let msg = "绑定手机号失败，请重试";
+            if(err && err.data &&  err.data.msg){
+                msg = err.data.msg
+            }
+            window.global.showMsg(msg, true)
+        })
+            
     }
     render() {
         return (
@@ -135,7 +187,6 @@ class Bindm extends Component {
                     <div className={styleCss.dialog_body}>
                         <div className={styleCss.dialog_title_c}>
                             <div className={styleCss.dialog_title_text}>关联手机号</div>
-                            <img src="" alt="" className={styleCss.dialog_close_btn} />
                         </div>
                         <div className={styleCss.phone_num_container}>
                             <input  onKeyUp = { e => this.handleTelInputVal(e) } type="tel" name="mobile" placeholder="请输入手机号" className={`${styleCss.text_input} ${styleCss.phone}`} />

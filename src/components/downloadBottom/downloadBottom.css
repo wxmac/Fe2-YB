@@ -5,35 +5,37 @@
     left: 0;
     width: 100%;
     box-sizing: border-box;
-    height: 1.6rem;
+    height: 1.4rem;
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 0 .2rem;
+    padding: 0 .1rem;
     background: #fff;
     justify-content: space-around;
+    z-index: 99;
 }
 .bottomCenter {
 }
 .bottomCenter p:nth-child(1){
     color: #222;
-    font-size: .37rem;
+    font-size: .3rem;
 }
 .bottomCenter p:nth-child(2){
     color: #999;
-    font-size: .27rem;
-    margin-top: .08rem;
+    font-size: .2rem;
+    margin-top: .18rem;
 }
 .bottom_logo{
-    width: .99rem;
-    height: .99rem;
+    width: .79rem;
+    height: .79rem;
 }
 .down_btn{
-    width: 2.08rem;
-    height: .8rem;
+    width: 1.6rem;
+    height: .6rem;
     background: url(../../assets/img/downloadBottom/down_btn.png) no-repeat;
     background-size: 100% 100%;
     color: #fff;
-    line-height: .8rem;
+    line-height: .6rem;
     text-align: center;
+    font-size: .26rem;
 }

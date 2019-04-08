@@ -36,6 +36,9 @@ export default class LoadMore{
         this.maxDownBounce = -(this.listContainer.offsetHeight - this.container.offsetHeight)
         this.init()
     }
+    /**
+     * 初始化
+     * */ 
     init(){
         this.handleTouchStart()
         this.handleTouchMove()

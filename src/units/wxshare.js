@@ -31,32 +31,23 @@ export default class WxShare {
         
         this.init()
     }
+    /**
+     * 初始化请求
+    */
     init(){
         const _this = this
         if (/micromessenger/i.test(navigator.userAgent)) {
-            function setWxConfig(data) {
-                var config = {
-                  debug: false,
-                  appId: data.appId,
-                  timestamp: data.timestamp,
-                  nonceStr: data.nonceStr,
-                  signature: data.signature,
-                  jsApiList: [
-                    'checkJsApi',
-                    'onMenuShareTimeline',
-                    'onMenuShareAppMessage'
-                  ]
-                };
-                wx.config(config);
-            }
-
             let url = window.location.origin + '/wxConfig.htm'
 
             fetch.post(url, {
                 url: window.location.href.split("#")[0],
-            },(data) => {
-                setWxConfig(data.data)
-                _this.shareConfig()
+            },(res) => {
+                if (res.data.success && res.data.data) {
+                    _this.setWxConfig(res.data)
+                    _this.shareConfig()
+                } else {
+                    window.global.showMsg('请求出错', true)
+                } 
             }, (error) => {
                 console.log(error)
             })
@@ -65,7 +56,28 @@ export default class WxShare {
             console.log('非微信环境')
         }
     }
-    // 分享朋友圈、微信
+    /**
+     * 微信相关参数配置
+     * */ 
+    setWxConfig(data){
+        const res = data.data
+        let config = {
+            debug: false,
+            appId:res.appId,
+            timestamp: res.timestamp,
+            nonceStr: res.nonceStr,
+            signature: res.signature,
+            jsApiList: [
+              'checkJsApi',
+              'onMenuShareTimeline',
+              'onMenuShareAppMessage'
+            ]
+        };
+        wx.config(config);
+    }
+    /**
+     * 微信分享朋友圈、微信好友配置
+     * */ 
     shareConfig(){
         const _this = this
         wx.ready(() => {
@@ -76,7 +88,7 @@ export default class WxShare {
                 imgUrl: _this.shareImg, // 分享图标
                 success: function () {
                     if( typeof(_this.WxShareSuccess) == "function" ){
-                        _this.WxShareCancel() 
+                        _this.WxShareSuccess() 
                     }
                     
                 },

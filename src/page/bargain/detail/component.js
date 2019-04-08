@@ -6,6 +6,8 @@ import DownloadBottom from '../../../components/downloadBottom'
 import ShareImg from '../../../assets/img/bargain/wxguide.png'
 import ShareDialog from '../../../components/shareDialog/index'
 import LoadMore from '../../../units/loadMore'
+import WxPay from '../../../units/wxPay'
+import VConsole from 'vconsole'
 class BargainDetail extends Component{
     constructor(props){
         super(props)
@@ -17,10 +19,16 @@ class BargainDetail extends Component{
             guidStatus: true,
             getWatch: true,
             receive: true,
+
             showLogin:true,
+            showMask:false
         }
-    }
+    } 
      componentDidMount(){
+         new VConsole();
+         
+
+        document.title = '砍价'
          this.props.getBtnStatus()
         setTimeout(() => {
             if(this.props.data.time){
@@ -28,7 +36,6 @@ class BargainDetail extends Component{
             }
         },10)
 
-        this.hadnleWxShare()
 
         new LoadMore({
             container: this.refs.main,
@@ -37,6 +44,8 @@ class BargainDetail extends Component{
                 console.log('success', currentpage)
             }
         })
+
+        this.hadnleWxShare()
     }
     // 微信分享
     hadnleWxShare(){
@@ -46,10 +55,10 @@ class BargainDetail extends Component{
             shareDesc:'简介',
             shareImg:'',
             WxShareSuccess()  {
-                alert('ok')
+                window.global.showMsg('ok', true)
             },
             WxShareCancel() {
-                alert('cancel')
+                window.global.showMsg('cancel', true)
             }
         })
 
@@ -58,6 +67,7 @@ class BargainDetail extends Component{
     componentWillUnmount(){
         clearInterval(this.timer)
     }
+    // 倒计时
     runTime(data){
         this.timer = setInterval( () => {
             let time = --data
@@ -76,33 +86,45 @@ class BargainDetail extends Component{
             }
         },100)
     }
+   
     // 记录当前点击index
     handleTab(e,index){
         this.setState({
             current:index
         })
+        
     }
     // 各个按钮状态
     handleBtnEvent(e){
         console.log(this.props.data.state)
-       if(this.props.data.state === 'success' || this.props.data.state === 'ing'){
-            this.setState({
-                alertMain: false,
-                alertTop: true,
-            })
-       } else if (this.props.data.state === 'fail'){
-            this.setState({
-                alertMain: false,
-                alertTop: false,
-            })
-       } else if(this.props.data.state === 'get'){
-            this.setState({
-                alertMain: false,
-                alertTop: false,
-                getWatch: false,
-                receive: false
-            })
-       }
+        new WxPay({
+            url: '/test/pay.htm',
+            data:{},
+            callback(){
+                console.log('--请求成功--')
+            },
+            paySuccess(){
+                console.log('支付成功')
+            }
+        })
+    //    if(this.props.data.state === 'success' || this.props.data.state === 'ing'){
+    //         this.setState({
+    //             alertMain: false,
+    //             alertTop: true,
+    //         })
+    //    } else if (this.props.data.state === 'fail'){
+    //         this.setState({
+    //             alertMain: false,
+    //             alertTop: false,
+    //         })
+    //    } else if(this.props.data.state === 'get'){
+    //         this.setState({
+    //             alertMain: false,
+    //             alertTop: false,
+    //             getWatch: false,
+    //             receive: false
+    //         })
+    //    }
     }
     handleCloseMain(e){
         e.stopPropagation()
