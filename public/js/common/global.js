@@ -1,4 +1,7 @@
 window.global == null || (window.global = {});
+window.global = {
+    showMsg : ''
+}
 /**
  * 警告框
  * @param {string} str -- 显示的文字
@@ -7,7 +10,7 @@ window.global == null || (window.global = {});
  * @returns {{show: show, hide: hide}}
  */
 
-const showMsg = function(str, autoHide, duration) {
+let showMsg = function(str, autoHide, duration) {
     let $mask = $('#j_alert_mask'); // eslint-disable-line
     let $el = $('#j_alert_el');// eslint-disable-line
     if (!$el.length) {
