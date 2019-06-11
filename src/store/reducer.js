@@ -1,11 +1,16 @@
 import { combineReducers } from 'redux'
 import {
-    HeaderReducer,BargainBtnStatus
+    HeaderReducer,
+    BargainBtnStatus,
+    GetCityList,
+    GetCarList
 } from './reducerName'
 
 const reducer = combineReducers({
     header: HeaderReducer,
-    bargain: BargainBtnStatus
+    bargain: BargainBtnStatus,
+    city:GetCityList,
+    car:GetCarList
 })
 
 export default reducer

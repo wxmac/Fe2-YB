@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
 }
-body{
+.body{
     background: linear-gradient(28deg,rgba(127,108,255,1) 0%,rgba(173,161,255,1) 100%);
 }
 .hide{

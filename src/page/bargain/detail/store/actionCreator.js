@@ -1,5 +1,5 @@
 import * as type from './actionType'
-import fetch from '../../../../units/api'
+import fetch from '@/units/api'
 export const  action_getStatus =  () => {
     return  (dispatch) => {
         fetch.get('/api/state.json', (res) => {

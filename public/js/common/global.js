@@ -1,5 +1,4 @@
-
-window.global == null && (window.global = {});
+window.global == null || (window.global = {});
 /**
  * 警告框
  * @param {string} str -- 显示的文字

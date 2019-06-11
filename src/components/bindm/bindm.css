@@ -7,7 +7,7 @@
     display: none !important;
 }
 .dialog_container {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100%;
@@ -23,6 +23,7 @@
     width: 100%;
     background-color: black;
     opacity: 0.5;
+    
 }
 .dialog_body_container {
     height: 100%;
@@ -79,7 +80,6 @@
 }
 .text_input, .phone{
     width: 3.76rem;
-    margin-right: 0.27rem;
 }
 .submit_btn {
     /* width: 2.4rem; */

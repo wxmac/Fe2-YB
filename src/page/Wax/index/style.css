@@ -1,0 +1,266 @@
+
+/* body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+} */
+
+.main_container {
+    /* height: 100vw; */
+    width: 10rem;
+    position: relative;
+}
+.main_container .img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 8;
+}
+.shop_shadow {
+    width: 10rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    bottom: 0.09rem;
+    left: 0;
+    z-index: 10;
+}
+.shop_container {
+    width: 9.2rem;
+    height: 3.893rem;
+    background-image: url("../../../assets/img/shop/wash_shop-bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 0.133rem 0.16rem 0.213rem 0.16rem;
+}
+.shop .top {
+    margin: 0.373rem 0.32rem 0.453rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.img_c {
+    width: 2.373rem;
+    height: 1.733rem;
+    position: relative;
+}
+.img_c .img_b {
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+}
+.shop .top .img_c .img_t {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0.107rem;
+    text-align: center;
+    font-size: 0.32rem;
+    color: #ffffff;
+}
+.disc_c {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 0.347rem;
+    flex: 1;
+}
+.disc_c .disc_top {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.disc_c .disc_top .top_name {
+    font-size: 0.373rem;
+    color: #222222;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 5.33rem;
+}
+.disc_c .disc_top .wash_stand {
+    border-radius: 3px;
+    width: 0.427rem;
+    height: 0.427rem;
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.267rem;
+    font-weight:400;
+    margin-left: 0.133rem;
+}
+.disc_c .disc_top .top_normal {
+    border: 1px solid #A8B4F8;
+    color: #A8B4F8;
+}
+.disc_c .disc_top .top_clean {
+    border: 1px solid #FFA0BD;
+    color: #FFA0BD;
+}
+.disc_center {
+    margin-top: 0.133rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+.disc_center .center_txt {
+    flex: 1;
+    font-size: 0.32rem;
+    font-weight: 400;
+    color: #999999;
+}
+.disc_center .center_txt .red {
+    color: rgba(230, 0, 18, 0.7);
+}
+.disc_bottom {
+    display: flex;
+    flex-wrap: wrap;
+}
+.disc_bottom .brand_item{
+    margin-top: 0.133rem;
+    margin-right: 0.133rem;
+    width: 1.44rem;
+    height: 0.507rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #A6A6A6;
+    border-radius: 2px;
+    color: #A6A6A6;
+    font-size: 0.267rem;
+    font-weight: 400;
+}
+.shop .bottom {
+    height: 1.28rem;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin: 0 0.32rem;
+    font-size: 0.32rem;
+    color: #999999;
+    font-weight: 400;
+}
+.position_c {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.shop .bottom .distance {
+    margin-right: 0.133rem;
+}
+.shop .bottom .position {
+    width: 5.733rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.shop .bottom .icon_position {
+    width: 0.64rem;
+    height: 0.64rem;
+}
+.map_icon {
+    width: 0.64rem;
+    height: 0.64rem;
+    position: absolute;
+    bottom: 4.25rem;
+}
+.map_icon.get_current {
+    left: 0.4rem;
+}
+.map_icon.map_plus {
+    right: 1.093rem;
+}
+.map_icon.map_min {
+    right: 0.373rem;
+}
+.anchorBL {
+    display: none;
+}
+.main_container .hidden {
+    display: none
+}
+.backIcon {
+    position: absolute;
+    width: 0.8rem;
+    height: 0.8rem;
+    top: 0.373rem;
+    left: 0.427rem;
+    z-index: 50;
+}
+
+.map_shadow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    background-color: rgba(0, 0, 0 , 0.7);
+}
+
+.map_shadow .dialogBody {
+    width: 10rem;
+    height: 6.08rem;
+    background-color: #FAFAFA;
+    position: absolute;
+    bottom: -6.1rem;
+    left: 0;
+}
+
+.map_shadow .dialogBody .title_c {
+    height: 1.387rem;
+    background-color: white;
+    font-size: 0.427rem;
+    font-weight: bold;
+    color: #222222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-bottom: 0.027rem;
+}
+.map_shadow .dialogBody .mapItem {
+    height: 1.52rem;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.427rem;
+    font-weight: 400;
+    color: #666666;
+    margin-bottom: 0.027rem;
+}
+.map_shadow .cancelBtn {
+    margin-top: 0.24rem;
+    height: 1.44rem;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.427rem;
+    font-weight: 400;
+    color: rgba(230,0,18,0.7);
+}
+
+.icon{
+
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 12px;
+}

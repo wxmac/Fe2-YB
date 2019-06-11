@@ -1,14 +1,13 @@
 /* 全局提示 */
 .alert_container {
     position: fixed;
-    top: 70%;
+    top: 80%;
     left: 50%;
     z-index: 999;
-    min-width: 50%;
-    max-width: 90%;
+    max-width: 70%;
     padding: 0.2rem .3rem;
     color: #fff;
-    font-size: .28rem;
+    font-size: .26rem;
     text-align: center;
     border-radius: .5rem;
     background-color: rgba(0, 0, 0, 0.8);
@@ -63,4 +62,16 @@
 }
 
 
-/*  */
+/*  loading */
+.loading_box{
+    /* display: none; */
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: .21rem;
+    z-index: 99;
+    white-space: nowrap;
+    font-size: 1.2rem;
+}
+

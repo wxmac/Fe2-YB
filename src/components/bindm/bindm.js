@@ -1,31 +1,64 @@
 import React, { Component } from 'react'
 import styleCss from './bindm.css'
-import isWx from '../../units/iswx'
-import fetch from '../../units/api'
+import isWx from '@/units/iswx'
+import fetch from '@/units/api'
+import $ from 'jquery'
+
 /**
  * 登录、注册弹窗 -- 关联手机号
  * 需要父元素传入的参数：
- * @param {boolean} showLogin -- 控制弹窗显示、隐藏
+ * @param {function} successCallback -- 登录成功回调
+ * @param {function} failCallback -- 登录失败回调
+ * @param {function} ShowDiolog -- // 判断是否显示弹窗
 */
 // 用法：
-// <Bindm showLogin = {this.state.showLogin}/> 
+/* <Bindm postClicnetId = { (clientId) => { this.getClientId(clientId) } }  ref="bindm" successCallback = {(e) => {
+    console.log('登录成功')
+}}/> */
+// this.refs.bindm.ShowDiolog(true) // 判断是否显示弹窗
+let clientId = '';
+// 
+function  hadnleSetClient(){
+    $.ajax({ 
+        url:'/washstation/json/queryLogin.htm',
+        dataType:'json',
+        async: false, // 主要是用这个
+        type:'get',
+        success(res){
+            if(res.success && res.data && res.data.sessionInfo){
+                clientId = res.data.sessionInfo.clientId
+            } else {
+                clientId = null
+            }
+        }
+    })
+}
 
 class Bindm extends Component {
     constructor(props){
         super(props)
+        hadnleSetClient()
         this.state = {
-            showMask: this.props.showLogin,
+            showMask:'',
             count: 60, // 秒数初始化为60秒
             liked: true, // 文案默认为‘获取验证码‘
             InputValueTel:'', // 输入框的值
             InputValueCode:'', // 验证码框的值
             flag: true, // 限制重复点击
-            getUid:null
+            getUid:null,
+            clientId:''
         }
     }
-    
+   
     componentDidMount() {
         this.handleNoScroll()
+        this.props.postClicnetId(clientId)
+    }
+    // 父组件传来的值
+    ShowDiolog(flag){
+        this.setState({
+            showMask:flag
+        })
     }
     // 禁止滚动 目前查到的是这个方法，有更好的方法可以更换。
     handleNoScroll(){
@@ -127,6 +160,7 @@ class Bindm extends Component {
         const CodeVal = this.state.InputValueCode
         const Inputval = this.state.InputValueTel
         console.log(this.state.flag)
+        
         if(this.state.flag){
             
             setTimeout(() => {
@@ -158,13 +192,12 @@ class Bindm extends Component {
             code:CodeVal,
             uid: this.state.getUid
         },(res) => {
-            console.log('--->', res)
             if(res.data && res.data.success ){
                 window.global.showMsg('绑定成功', true)
-                window.location.href =  window.location.href + '?t='+((new Date()).getTime());
-                this.setState({
-                    showMask: false
-                })
+                window.location.href = window.location.href + '?time=' + ( +new Date() );
+                window.location.reload()
+                this.props.successCallback()
+               
             } else {
                 if(res.data && res.data.msg){
                     window.global.showMsg(res.data.msg, true)
@@ -180,6 +213,7 @@ class Bindm extends Component {
             
     }
     render() {
+        
         return (
             <div id="nonius"  className={`${styleCss.dialog_container}  ${ this.state.showMask ? '' : styleCss.hide }`} >
                 <div className={styleCss.dialog_shadow}></div>
@@ -205,7 +239,7 @@ class Bindm extends Component {
                             </div>
                         </div>
                         <div className={`${styleCss.phone_num_container} ${styleCss.num}`}>
-                            <input onKeyUp = { e => this.handleCodeInputVal(e) }  type="text"  name="code" placeholder="请输入短信验证码" className={styleCss.text_input} />
+                            <input onKeyUp = { e => this.handleCodeInputVal(e) }  type="tel"  name="code" placeholder="请输入短信验证码" className={styleCss.text_input} />
                         </div>
                         <div className={`${styleCss.next_btn} ${styleCss.button}`} id="next_btn">
                             <input type="hidden" id="j_uid" value="" />

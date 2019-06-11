@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styleCss from './style.css'
-import CountUp from 'react-countup';
+import CountUp from 'react-countup'; // 数字快速切换
+import Bindm from '@/components/bindm/bindm'
+
 class Bargain extends Component{
     constructor(props){
         super(props)
@@ -28,6 +30,21 @@ class Bargain extends Component{
             this.forceUpdate()
         }, 500)
     }
+    // 各个按钮状态
+    handleBtnEvent(e){
+        if(this.state.dClientId){
+            console.log('success')
+        } else{
+            this.refs.bindm.ShowDiolog(true)
+
+        }
+    }
+     // 获取登录状态
+     getClientId(clientId){
+        this.setState({
+            dClientId:clientId
+        })
+    }
     render() {
         const return_img = require('../../../assets/img/bargain/icon-return.png')
         const banner = require('../../../assets/img/bargain/banner.png')
@@ -37,10 +54,13 @@ class Bargain extends Component{
         return(
             // <div></div> <img src={} alt="" />
             <div className={ `${styleCss.bargain_main} ${styleCss.red}` }>
+                 <Bindm  ref="bindm" successCallback = {(e) => {
+                    console.log('登录成功')
+                }} postClicnetId={(clientId) => this.getClientId(clientId)}/>
                {/* top */}
                <div className={ styleCss.bargain_main_top }>
                  <img className={ styleCss.main_top_img } src={return_img}   alt=""/>
-                 <div className={ styleCss.main_top_text }>砍价免费拿</div>
+                 <div className={ styleCss.main_top_text } onClick={(e) => this.handleBtnEvent(e)}>砍价免费拿</div>
                </div>
                {/* banner */}
                <img className={ styleCss.banner_img } src={banner} alt="" />

@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+
 import styleCss from './style.css';
-import WxShare from '../../../units/wxshare'
-import Bindm from '../../../components/bindm/bindm'
-import DownloadBottom from '../../../components/downloadBottom'
-import ShareImg from '../../../assets/img/bargain/wxguide.png'
-import ShareDialog from '../../../components/shareDialog/index'
-import LoadMore from '../../../units/loadMore'
-import WxPay from '../../../units/wxPay'
-import VConsole from 'vconsole'
+import WxShare from '@/units/wxshare'
+import ShareImg from '@/assets/img/bargain/wxguide.png'
+import LoadMore from '@/units/loadMore'
+import WxPay from '@/units/wxPay'
+// import fetch from '@/units/api'
+import Iconfont from '@/font/iconfont.css'
+import loadable from '@loadable/component'
+const Bindm =  loadable(() => import('@/components/bindm/bindm'));
+const DownloadBottom =  loadable(() => import('@/components/downloadBottom'));
+const ShareDialog =  loadable(() => import('@/components/shareDialog/index'));
+
 class BargainDetail extends Component{
     constructor(props){
         super(props)
@@ -19,20 +23,18 @@ class BargainDetail extends Component{
             guidStatus: true,
             getWatch: true,
             receive: true,
-
-            showLogin:true,
-            showMask:false
+            showLogin:false,
+            showMask:false,
+            dClientId:''
         }
     } 
      componentDidMount(){
-         new VConsole();
-         
 
         document.title = '砍价'
          this.props.getBtnStatus()
         setTimeout(() => {
             if(this.props.data.time){
-                this.runTime(this.props.data.time)
+                // this.runTime(this.props.data.time)
             }
         },10)
 
@@ -46,6 +48,13 @@ class BargainDetail extends Component{
         })
 
         this.hadnleWxShare()
+
+        var addTwoNumbers = function(l1, l2) {
+            const str1 = l1.reverse().join('')
+            const str2 = l2.reverse().join('')
+            return (Number(str1) + Number(str2))
+        };
+        console.log('11', addTwoNumbers([2,4,3], [5,6,4]))
     }
     // 微信分享
     hadnleWxShare(){
@@ -96,35 +105,27 @@ class BargainDetail extends Component{
     }
     // 各个按钮状态
     handleBtnEvent(e){
-        console.log(this.props.data.state)
-        new WxPay({
-            url: '/test/pay.htm',
-            data:{},
-            callback(){
-                console.log('--请求成功--')
-            },
-            paySuccess(){
-                console.log('支付成功')
-            }
-        })
-    //    if(this.props.data.state === 'success' || this.props.data.state === 'ing'){
-    //         this.setState({
-    //             alertMain: false,
-    //             alertTop: true,
-    //         })
-    //    } else if (this.props.data.state === 'fail'){
-    //         this.setState({
-    //             alertMain: false,
-    //             alertTop: false,
-    //         })
-    //    } else if(this.props.data.state === 'get'){
-    //         this.setState({
-    //             alertMain: false,
-    //             alertTop: false,
-    //             getWatch: false,
-    //             receive: false
-    //         })
-    //    }
+        if(this.state.dClientId){
+            new WxPay({
+                url: '/test/pay.htm',
+                data:{},
+                callback(){
+                    console.log('--请求成功--')
+                },
+                paySuccess(){
+                    console.log('支付成功')
+                }
+            })
+        } else{
+            this.refs.bindm.ShowDiolog(true)
+
+        }
+        // fetch.get('/washstation/json/queryLogin.htm', (res) => {
+        //     if(res.data.success && res.data.data && res.data.data.sessionInfo && res.data.data.sessionInfo.clientId){
+                
+        //     } else {
+        //     }
+        // })
     }
     handleCloseMain(e){
         e.stopPropagation()
@@ -143,7 +144,13 @@ class BargainDetail extends Component{
             guidStatus: true,
         })
     }
-    
+    // 获取登录状态
+    getClientId(clientId){
+        console.log('clientId--->',clientId)
+        this.setState({
+            dClientId:clientId
+        })
+    }
     render() {
         // 进度条
         const w =  (Number(this.props.data.alread) / Number(this.props.data.total)) * 100
@@ -157,17 +164,19 @@ class BargainDetail extends Component{
 
         return(
             // <div></div> <img src={} alt="" />
-            <div onClick = { e => this.handleCloseGuid(e) }>
-                <ShareDialog  ShareTitle = '微信分享' ShareDesc = '分享简介' ShareImg = {ShareImg} showMask={ this.state.showMask } />
+            <div onClick = { e => this.handleCloseGuid(e) } className={ styleCss.body }>
+                <ShareDialog  ShareTitle = '微信分享' ShareDesc = '分享简介'  ShareImg = {ShareImg} showMask={ this.state.showMask } />
                 <DownloadBottom />
-                <Bindm showLogin = {this.state.showLogin}/>
+                <Bindm postClicnetId = { (clientId) => { this.getClientId(clientId) } }  ref="bindm" successCallback = {(e) => {
+                    console.log('登录成功')
+                }}/>
                 <div className={styleCss.back_index}>
                     <img className={styleCss.back_img} src={ require("../../../assets/img/bargain/icon-return.png") } alt="" />
                     <div className={styleCss.back_index_text}>
                         砍价免费拿
                     </div>
                 </div>
-
+                <span className={`${Iconfont.iconfont} ${Iconfont.icon_wode}`}></span>
                 <div className={styleCss.bargain_detail_main}>
                     <div className={styleCss.detail_main_top}>
                         <div className={styleCss.top_title}>
@@ -253,6 +262,7 @@ class BargainDetail extends Component{
 
                                         
                                 </div>
+
                             {/* <!-- right --> */}
                             <div className={`${styleCss.main_cont_list} ${this.state.current === 1 ? styleCss.show_cont : ''}`} >
                                     <div className={styleCss.main_cont_item}>

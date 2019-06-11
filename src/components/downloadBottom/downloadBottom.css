@@ -5,7 +5,7 @@
     left: 0;
     width: 100%;
     box-sizing: border-box;
-    height: 1.4rem;
+    height: 1.1rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -32,10 +32,11 @@
 .down_btn{
     width: 1.6rem;
     height: .6rem;
-    background: url(../../assets/img/downloadBottom/down_btn.png) no-repeat;
+    background: linear-gradient(#ffcf48, #ff9c50);
     background-size: 100% 100%;
     color: #fff;
     line-height: .6rem;
     text-align: center;
-    font-size: .26rem;
+    font-size: .24rem;
+    border-radius: .3rem;
 }

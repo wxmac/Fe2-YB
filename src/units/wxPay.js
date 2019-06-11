@@ -28,6 +28,7 @@ export default class WxPay {
     */
     init(){
         const _this = this;
+        window.global.showMsg('请稍后...',true, 1000)
         fetch.post(this.url, this.data , (res) => {
             if(res.data.success && res.data.data) {
                 _this.orderInfo = JSON.parse(res.data.data.wechat_param);
@@ -74,7 +75,6 @@ export default class WxPay {
      * 刷新时间戳
     */
     refreshPageNew(){
-       
         if (window.location.href.indexOf('&t=') >  -1 ){
             const url = window.location.href.split('&t=')[0]
             window.location.href = url + '&t='+((new Date()).getTime());

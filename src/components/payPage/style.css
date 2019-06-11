@@ -1,0 +1,100 @@
+html,body{
+    height: 100%;
+}
+.hide{
+    display: none !important;
+}
+.pay_container{
+    background: #fcfcfc;
+    display: flex;
+    flex-direction: column;
+}
+.pay_top{
+    height: 3rem;
+    background: #fff; 
+    text-align: center;
+    padding: .8rem 0 0;
+    font-size: .3rem;
+}
+.pay_time{
+    color: #cecece;
+}
+.pay_time span:nth-child(2){
+    margin-left: .2rem
+}
+
+.pay_price{
+    font-size: .9rem;
+    padding: .3rem 0;
+}
+.pay_price span:nth-child(1){
+    font-size: .7rem;
+}
+.pay_order{
+   color: #cecece;
+   font-size: .22rem;
+}
+.pay_order span:nth-child(1){
+    
+}
+
+.pay_center{
+}
+
+.pay_selectBox{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: 1.3rem; 
+    background: #fff;
+    font-size: .3rem;
+    padding: 0 .5rem;
+    margin-top: .3rem;
+}
+.pay_txt{
+    flex: 1;
+}
+.pay_selectBox .pay_icon{
+    width: .8rem;
+    margin-right:.3rem;
+}
+.pay_selbtn{
+    background: url(/static/img/product/select_false.png) no-repeat;
+    background-size: 100% 100%;
+}
+.unSelected{
+    width: .4rem;
+    height: .4rem;
+    border-radius: 50%;
+    border: 1px solid #ece8e8;
+}
+.selected{
+    width: .4rem;
+    height: .4rem;
+    border-radius: 50%;
+    /* background-image: url(/static/img/product/select_true.png) no-repeat; */
+    background: red;
+    background-size: 100% 100%;
+}
+
+.position_box{
+    flex: 1;
+    background: #fcfcfc;
+}
+.pay_btn{
+    width: 6.5rem;
+    font-size: .32rem;
+    background: #eb0021;
+    line-height: .9rem;
+    height: .9rem;
+    color: #fff;
+    border-radius: .57rem;
+    text-align: center;
+    margin: 2rem auto 0;
+}
+.pay_btn span:nth-child(1){
+    margin-right: .2rem;
+}
+.prohibit{
+    opacity: .4;
+}
